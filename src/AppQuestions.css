@@ -1,0 +1,30 @@
+.question-card {
+  border-radius: 1rem;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.question-card.answered {
+  border: 2px solid #38b2ac;
+  /* teal-400 */
+  box-shadow: 0 0 0 2px #38b2ac;
+}
+
+.question-card.unanswered {
+  border: 2px solid #fbbf24;
+  /* yellow-400 */
+  box-shadow: 0 0 0 2px #fbbf24;
+  animation: blinkBorder 1s infinite;
+}
+
+@keyframes blinkBorder {
+  0%,
+  100% {
+    border: 2px solid #f87171;
+    box-shadow: 0 0 0 2px #f87171;
+  }
+
+  50% {
+    border: 2px solid #f87171;
+    box-shadow: 0 0 8px 2px #f87171;
+  }
+}
