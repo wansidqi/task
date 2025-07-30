@@ -280,15 +280,15 @@ export function Question() {
           </button>
         </div>
       </div>
-      {/* Copyright Notice */}
-      <div className="w-full flex justify-center mt-8 md:mt-10 px-2">
-        <span className="text-[10px] md:text-xs text-teal-200 bg-gray-800 bg-opacity-70 rounded-lg px-2 md:px-4 py-1 md:py-2 shadow border border-teal-700 text-center">
+
+      <div className="sticky bottom-4 w-full flex justify-center z-40">
+        <span className="text-xs md:text-sm text-teal-100 bg-gray-700 bg-opacity-80 rounded-lg px-3 py-1 shadow border border-teal-500 text-center opacity-80">
           copyright:{" "}
           <a
             href="https://www.mathinenglish.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-yellow-300 hover:text-yellow-400"
+            className="underline text-yellow-300 hover:text-yellow-400 pointer-events-auto"
           >
             www.mathinenglish.com
           </a>
