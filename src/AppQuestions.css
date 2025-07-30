@@ -19,13 +19,13 @@
 @keyframes blinkBorder {
   0%,
   100% {
-    border: 2px solid #f87171;
-    box-shadow: 0 0 0 2px #f87171;
+    border: 2px solid #ef4444;
+    box-shadow: 0 0 0 2px #ef4444;
   }
 
   50% {
-    border: 2px solid #f87171;
-    box-shadow: 0 0 8px 2px #f87171;
+    border: 2px solid #ef4444;
+    box-shadow: 0 0 8px 2px #ef4444;
   }
 }
 
@@ -80,4 +80,42 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Custom scrollbar styles for leaderboard */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-yellow-500 {
+  scrollbar-color: #eab308 #134e4a;
+}
+
+.scrollbar-track-teal-800 {
+  scrollbar-color: #eab308 #134e4a;
+}
+
+/* Webkit browsers scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #134e4a;
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #eab308;
+  border-radius: 4px;
+  border: 1px solid #134e4a;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ca8a04;
+}
+
+/* Smooth scroll behavior */
+.scrollbar-thin {
+  scroll-behavior: smooth;
 }
