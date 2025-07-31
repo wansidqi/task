@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import questionsSet from "../data/questions.json";
 import reset from "../../src/assets/reset.png";
 import "../AppQuestions.css";
-import { useGetLeaderboard, usePostLeaderboard } from "../services/leaderboard";
+import { usePostLeaderboard } from "../services/leaderboard";
 
 export function Question() {
   const [answersMap, setAnswersMap] = useState(new Map());
@@ -18,7 +18,6 @@ export function Question() {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { mutateAsync } = usePostLeaderboard();
-  const { data } = useGetLeaderboard();
 
   const totalQuestions = questionsSet.length;
 
