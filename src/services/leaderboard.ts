@@ -5,8 +5,10 @@ interface LeaderboardEntry {
   score: number;
 }
 
+const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
+
 async function fetchLeaderboard() {
-  const response = await fetch("http://localhost:3000/leaderboard");
+  const response = await fetch(`${API_DOMAIN}/leaderboard`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -15,7 +17,7 @@ async function fetchLeaderboard() {
 }
 
 async function postLeaderboardEntry(entry: LeaderboardEntry) {
-  const response = await fetch("http://localhost:3000/leaderboard", {
+  const response = await fetch(`${API_DOMAIN}/leaderboard`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
