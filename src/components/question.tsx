@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import questionsSet from "../components/questions.json";
+import questionsSet from "../data/questions.json";
 import reset from "../../src/assets/reset.png";
 import "../AppQuestions.css";
+import { useGetLeaderboard, usePostLeaderboard } from "../services/leaderboard";
 
 export function Question() {
   const [answersMap, setAnswersMap] = useState(new Map());
@@ -16,6 +17,8 @@ export function Question() {
   const [showPopup, setShowPopup] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { mutateAsync } = usePostLeaderboard();
+  const { data } = useGetLeaderboard();
 
   const totalQuestions = questionsSet.length;
 
@@ -39,7 +42,7 @@ export function Question() {
     });
   };
 
-  const submitAnswers = () => {
+  const submitAnswers = async () => {
     let hasErrors = false;
 
     if (name.trim() === "") {
@@ -71,6 +74,10 @@ export function Question() {
     setScore(newScore);
     setShowPopup(true);
     console.log("Quiz submitted! Score:", newScore);
+    mutateAsync({
+      name,
+      score: newScore,
+    });
   };
 
   const handleTryAgain = () => {
@@ -91,7 +98,7 @@ export function Question() {
     if (error.name) {
       const fadeTimer = setTimeout(() => {
         setToastFading((prev) => ({ ...prev, name: true }));
-      }, 2500); // Start fading 500ms before removal
+      }, 2500);
 
       const removeTimer = setTimeout(() => {
         setError((prev) => ({ ...prev, name: false }));
