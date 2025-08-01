@@ -5,7 +5,6 @@ import { useGetLeaderboard } from "../services/leaderboard";
 export function Leaderboard() {
   const navigate = useNavigate();
   const { data } = useGetLeaderboard();
-  const leaderboardData = data || [];
 
   const getRankIcon = (index: number) => {
     switch (index) {
@@ -31,7 +30,7 @@ export function Leaderboard() {
         <div className="mt-6 sm:mt-10 md:mt-20 bg-gradient-to-r from-teal-900/50 via-teal-800/50 to-teal-900/50 sm:bg-teal-900/50 rounded-2xl p-2 sm:p-4 md:p-6 backdrop-blur-sm border border-teal-700">
           <div className="max-h-[300px] sm:max-h-[400px] md:max-h-[600px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-yellow-500 scrollbar-track-teal-800">
             <div className="space-y-2 sm:space-y-4">
-              {leaderboardData.map((entry, index) => (
+              {data?.map((entry, index) => (
                 <div
                   key={index}
                   className={`group relative p-2 sm:p-3 md:p-4 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02] flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 ${
