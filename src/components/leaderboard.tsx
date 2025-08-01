@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../AppQuestions.css";
 import { useGetLeaderboard } from "../services/leaderboard";
+import lbData from "../data/leaderboard.json";
 
 export function Leaderboard() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export function Leaderboard() {
 
         {/* Leaderboard Container with scrollable content */}
         <div className="mt-6 sm:mt-10 md:mt-20 bg-gradient-to-r from-teal-900/50 via-teal-800/50 to-teal-900/50 sm:bg-teal-900/50 rounded-2xl p-2 sm:p-4 md:p-6 backdrop-blur-sm border border-teal-700">
-          <div className="max-h-[300px] sm:max-h-[400px] md:max-h-[600px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-yellow-500 scrollbar-track-teal-800">
+          <div className="max-h-[500px] sm:max-h-[400px] md:max-h-[600px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-yellow-500 scrollbar-track-teal-800">
             <div className="space-y-2 sm:space-y-4">
               {data?.map((entry, index) => (
                 <div
@@ -39,20 +40,19 @@ export function Leaderboard() {
                       : "bg-gradient-to-r from-teal-800/50 via-teal-700/40 to-teal-800/50 sm:from-teal-800/40 sm:to-teal-700/40 border-2 border-teal-600/30"
                   }`}
                 >
-                  {/* Rank and Name */}
-                  <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start">
-                    <div className="text-base sm:text-lg md:text-2xl font-bold min-w-[32px] sm:min-w-[40px] md:min-w-[60px] text-center">
-                      {getRankIcon(index)}
+                  {/* Inline Layout for all screen sizes */}
+                  <div className="flex items-center justify-between w-full gap-2">
+                    <div className="flex items-center gap-2 sm:gap-4 flex-1">
+                      <div className="text-lg sm:text-lg md:text-2xl font-bold min-w-[32px] sm:min-w-[40px] md:min-w-[60px] text-center">
+                        {getRankIcon(index)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm sm:text-base md:text-xl font-bold text-yellow-300 truncate">
+                          {entry.name}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-sm sm:text-base md:text-xl font-bold text-yellow-300 text-center sm:text-left">
-                        {entry.name}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-6 w-full sm:w-auto justify-center sm:justify-end">
-                    <div className="text-right min-w-[40px] sm:min-w-[60px] md:min-w-[100px]">
+                    <div className="text-right min-w-[50px] sm:min-w-[60px] md:min-w-[100px]">
                       <div className="text-base sm:text-lg md:text-2xl font-bold text-yellow-400">
                         {entry.score}
                       </div>
