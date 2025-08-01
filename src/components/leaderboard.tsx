@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../AppQuestions.css";
 import { useGetLeaderboard } from "../services/leaderboard";
-import lbData from "../data/leaderboard.json";
+// import lbData from "../data/leaderboard.json";
 
 export function Leaderboard() {
   const navigate = useNavigate();
