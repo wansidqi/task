@@ -217,44 +217,48 @@ export function Question() {
                 key={index}
                 className={`question-card
                    ${!answered && error.question ? "unanswered" : "answered"} 
-                  bg-gradient-to-r from-teal-800/40 to-teal-700/40 p-1 rounded-2xl w-full`}
+                  bg-gradient-to-r from-teal-800/50 via-teal-700/40 to-teal-800/50 sm:from-teal-800/40 sm:to-teal-700/40 p-1 rounded-2xl w-full`}
               >
-                <div className="rounded-lg shadow p-3 md:p-4 flex flex-col gap-2">
+                <div className="rounded-lg shadow p-3 md:p-4 flex flex-col gap-2 relative">
                   <p className="font-semibold text-base md:text-md text-yellow-300 mb-2 text-center md:text-left">
                     {item.question} rounded off to the nearest 10 is:
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-2 md:gap-4 items-center justify-between w-full">
-                    <div className="flex gap-2 md:gap-4 items-center">
-                      {item.options.map((option, idx) => (
-                        <div
-                          key={idx}
-                          className="flex flex-col items-center w-full"
-                        >
-                          <input
-                            value={option}
-                            checked={answered === option}
-                            type="radio"
-                            onChange={() => selectAnswer(index + 1, option)}
-                            className="accent-yellow-400 w-4 md:w-5 h-4 md:h-5 focus:outline-none"
-                            id={`q${index + 1}-${idx}`}
-                          />
-                          <label
-                            htmlFor={`q${index + 1}-${idx}`}
-                            className="text-teal-200 font-medium cursor-pointer hover:text-yellow-400 transition text-xs md:text-base"
-                          >
-                            {option}
-                          </label>
-                        </div>
-                      ))}
+                  <div className="flex flex-col gap-2 md:gap-4 w-full">
+                    <div className="flex gap-2 md:gap-4 items-center justify-center md:justify-between w-full">
+                      <div className="flex gap-2 md:gap-4 items-center justify-center flex-wrap">
+                        {item.options.map((option, idx) => (
+                          <div key={idx} className="flex flex-col items-center">
+                            <input
+                              value={option}
+                              checked={answered === option}
+                              type="radio"
+                              onChange={() => selectAnswer(index + 1, option)}
+                              className="accent-yellow-400 w-4 md:w-5 h-4 md:h-5 focus:outline-none"
+                              id={`q${index + 1}-${idx}`}
+                            />
+                            <label
+                              htmlFor={`q${index + 1}-${idx}`}
+                              className="text-teal-200 font-medium cursor-pointer hover:text-yellow-400 transition text-xs md:text-base"
+                            >
+                              {option}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-col items-center absolute right-3 md:relative md:right-auto md:ml-auto">
+                        <img
+                          width={20}
+                          height={20}
+                          onClick={() => resetAnswer(index + 1)}
+                          src={reset}
+                          alt="Reset"
+                          className="cursor-pointer hover:opacity-80 transition w-5 h-5 md:w-6 md:h-6"
+                        />
+                        <span className="text-xs text-teal-300 mt-1">
+                          Reset
+                        </span>
+                      </div>
                     </div>
-                    <img
-                      width={24}
-                      height={24}
-                      onClick={() => resetAnswer(index + 1)}
-                      src={reset}
-                      alt="Reset"
-                      className="cursor-pointer hover:opacity-80 transition mx-auto md:mx-0"
-                    />
                   </div>
                 </div>
               </div>

@@ -4,9 +4,8 @@ import { useGetLeaderboard } from "../services/leaderboard";
 
 export function Leaderboard() {
   const navigate = useNavigate();
-  const dataEmpty = [{ name: "No entries yet", score: 0 }];
   const { data } = useGetLeaderboard();
-  const leaderboardData = data && data.length > 0 ? data : dataEmpty;
+  const leaderboardData = data || [];
 
   const getRankIcon = (index: number) => {
     switch (index) {
@@ -22,14 +21,14 @@ export function Leaderboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-teal-900 to-yellow-700 flex flex-col items-center py-4 md:py-10">
+    <div className="fixed inset-0 sm:relative sm:inset-auto min-h-[100dvh] w-full bg-gradient-to-br from-gray-900 via-teal-900 to-yellow-700 flex flex-col items-center py-4 md:py-10 overflow-auto sm:overflow-visible">
       <div className="p-2 sm:p-4 md:p-8 w-full max-w-2xl md:max-w-4xl lg:max-w-6xl">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-yellow-400 text-center mb-2 drop-shadow-lg">
           🏆 Quiz Leaderboard 🏆
         </h1>
 
         {/* Leaderboard Container with scrollable content */}
-        <div className="mt-6 sm:mt-10 md:mt-20 bg-teal-900/50 rounded-2xl p-2 sm:p-4 md:p-6 backdrop-blur-sm border border-teal-700">
+        <div className="mt-6 sm:mt-10 md:mt-20 bg-gradient-to-r from-teal-900/50 via-teal-800/50 to-teal-900/50 sm:bg-teal-900/50 rounded-2xl p-2 sm:p-4 md:p-6 backdrop-blur-sm border border-teal-700">
           <div className="max-h-[300px] sm:max-h-[400px] md:max-h-[600px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-yellow-500 scrollbar-track-teal-800">
             <div className="space-y-2 sm:space-y-4">
               {leaderboardData.map((entry, index) => (
@@ -37,8 +36,8 @@ export function Leaderboard() {
                   key={index}
                   className={`group relative p-2 sm:p-3 md:p-4 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02] flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 ${
                     index < 3
-                      ? "bg-gradient-to-r from-yellow-600/20 via-yellow-500/20 to-yellow-400/20 border-2 border-yellow-400/30"
-                      : "bg-gradient-to-r from-teal-800/40 to-teal-700/40 border-2 border-teal-600/30"
+                      ? "bg-gradient-to-r from-yellow-600/30 via-yellow-500/20 to-yellow-400/30 sm:from-yellow-600/20 sm:via-yellow-500/20 sm:to-yellow-400/20 border-2 border-yellow-400/30"
+                      : "bg-gradient-to-r from-teal-800/50 via-teal-700/40 to-teal-800/50 sm:from-teal-800/40 sm:to-teal-700/40 border-2 border-teal-600/30"
                   }`}
                 >
                   {/* Rank and Name */}
